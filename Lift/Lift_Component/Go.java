@@ -1,7 +1,5 @@
 package Lift_Component;
-
-import java.util.logging.Level;
-
+import java.lang.Thread;
 public class Go extends Door{
     
     public void goDown(Level_Control Level_info) throws Exception{
@@ -15,10 +13,9 @@ public class Go extends Door{
                 if(now_level == Level_info.get_Stop_level().get(temp)){
                     System.out.println("Stop");
                     door.Door=door.setDoor();
-                                                        //在這里設開門時間
+                                                    //在這里設開門時間
                     door.Door=door.setDoor();
                     Level_info.delete_level_stopList(now_level);                  
-                    
                 }
             }
             now_level-=1;
@@ -39,6 +36,7 @@ public class Go extends Door{
                         door.Door=door.setDoor();
                                                             //在這里設開門時間
                         door.Door=door.setDoor();
+                        Level_info.delete_level_stopList(now_level);
                     }
                 }
                 now_level+=1;

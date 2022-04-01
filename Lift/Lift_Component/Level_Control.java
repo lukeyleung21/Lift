@@ -1,21 +1,19 @@
 package Lift_Component;
 import java.util.ArrayList;
 import java.util.Iterator;
-
+import java.util.Scanner;
 import Lift_Component.Error_Handle.ExcceedError;
-public class Level_Control extends Go{
+public class Level_Control{
+    Go x = new Go();
     private boolean status = false;
     private int now_level=0;
     private final int top_level=10;
-    private ArrayList<Integer> Stop_list=new ArrayList<Integer>();                 //Stop_list
-    public ArrayList<Integer> get_Stop_level(){return Stop_list;}
+    private static ArrayList<Integer> Stop_list=new ArrayList<Integer>();                 //Stop_list
+    public ArrayList<Integer> get_Stop_level(){return this.Stop_list;}
     public void set_Stop_level(int x) throws Exception{
         if(x > this.top_level){throw new ExcceedError("Out of level");}
         if(this.Stop_list.contains(x)){System.out.println( x + " level pressed already");}
         this.Stop_list.add(x);
-        if(status ==false){super.goUp(this);status=true;}
-        else{super.goDown(this);status=false;}
-        
     }
     public int get_now_level(){return now_level;}
     public void set_now_level(int x) throws ExcceedError{
