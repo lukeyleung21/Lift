@@ -3,14 +3,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import Lift_Component.Error_Handle.ExcceedError;
-public class Level_Control{
-    private int now_level=10;
+public class Level_Control extends Go{
+    private boolean status = false;
+    private int now_level=0;
     private final int top_level=10;
     private ArrayList<Integer> Stop_list=new ArrayList<Integer>();                 //Stop_list
     public ArrayList<Integer> get_Stop_level(){return Stop_list;}
-    public void set_Stop_level(int x) throws ExcceedError{
+    public void set_Stop_level(int x) throws Exception{
         if(x > this.top_level){throw new ExcceedError("Out of level");}
+        if(this.Stop_list.contains(x)){System.out.println( x + " level pressed already");}
         this.Stop_list.add(x);
+        if(status ==false){super.goUp(this);status=true;}
+        else{super.goDown(this);status=false;}
+        
     }
     public int get_now_level(){return now_level;}
     public void set_now_level(int x) throws ExcceedError{
@@ -39,5 +44,9 @@ public class Level_Control{
                 }        //condition of Stop_list
             }
             return Lower;
+    }
+    public void delete_level_stopList(int x){
+        int temp = this.Stop_list.indexOf(x);
+        this.Stop_list.remove(temp);
     }
 }

@@ -1,5 +1,4 @@
 import Lift_Component.*;
-import Lift_Component.Error_Handle.ExcceedError;
 public class Lift_2 {
     public static void main(String[] args)throws Exception{
         Go x = new Go();
